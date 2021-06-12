@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="/static/app.js"></script>
+    <title>My TMDB</title>
+  </head>
+  <body onload="getHomePage()">
+
+      <div id="header">
+        <div id="gradient">
+        </div>
+        <h1><b>THE MOVIE DB</b></h1>
+      </div>
+
+      <div id="left-pane">
+        <div class="tab">
+            <button class="tablinks active" onclick="location.href='/'">Home &nbsp; &rarr;</button>
+            <br>
+            <br>
+            <button id='search-tab' class="tablinks" onclick="searchData()" >Search &nbsp; &rarr;</button>
+        </div>
+      </div>
+
+      <div id="separator2" style="height:80%"></div>
+
+      <div id="right-pane">
+        <div id="separator1"></div>
+        <div id="content">
+
+          <div id="trending-movies" style="width:100%">
+            <p id="movies-text">Trending Movies</p>
+            <!-- <div class="slideshow-container">
+              {% for result in results%}
+              <div class="mySlides1 fade">
+                <img src= "{{result.Backdrop}}" width="95%">
+                <div class="text">{{result.Name}} ({{result.Date}})</div>
+              </div>
+              {% endfor%}
+            </div> -->
+          </div>
+
+          <div id="breaks">
+            <br><br><br>
+          </div>
+
+          <div id="tv-shows" style="width:100%">
+            <p id="movies-text">TV Shows On-Air Today</p>
+            <!-- <div class="slideshow-container">
+              {% for answer in answers%}
+              <div class="mySlides2 fade">
+                <img src= "{{answer.Backdrop}}" width="95%">
+                <div class="text">{{answer.Name}} ({{answer.Date}})</div>
+              </div>
+              {% endfor%}
+            </div> -->
+          </div>
+        </div>
+        <footer id="footer">
+          <p style="color:white">Develped by Vijayantika <br> Powered by TMDB</p>
+        </footer>
+      </div>
+
+
+
+
+    <!-- <script type="text/javascript">
+      var index = 0
+      showSlides()
+      function showSlides() {
+        var i;
+        var slides1 = document.getElementsByClassName("mySlides1");
+        var slides2 = document.getElementsByClassName("mySlides2");
+        for (i = 0; i < slides1.length; i++) {
+          slides1[i].style.display = "none";
+          slides2[i].style.display = "none";
+        }
+        index++;
+        if (index > slides1.length) {index = 1;}
+        slides1[index-1].style.display = "block";
+        slides2[index-1].style.display = "block";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+      }
+    </script> -->
+
+  </body>
+</html>
