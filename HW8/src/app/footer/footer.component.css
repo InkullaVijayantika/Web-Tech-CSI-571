@@ -1,0 +1,18 @@
+footer {
+  width: 100%;
+  margin-top: 5%;
+  height: 40%;
+  background-color: black;
+  color: white;
+}
+
+.text-white {
+  text-align: center;
+  padding-top: 1%;
+  font-size: 15px;
+
+}
+
+#sticky-footer{
+  flex-shrink: 0;
+}

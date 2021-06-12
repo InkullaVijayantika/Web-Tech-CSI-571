@@ -1,0 +1,44 @@
+<nav class="navbar navbar-dark navbar-expand-lg static-top" style="background-color: black">
+  <a class="navbar-brand" routerLink="/">USC Films</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto nav-pills">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="/mylist">My List</a>
+      </li>
+    </ul>
+
+<!--    <form id="autocomplete-form">-->
+<!--      <div class="input-group" id="search">-->
+<!--          <input class="form-control" id="query" type="text"  placeholder="Search" matInput [formControl]="formControl" [matAutocomplete]="auto" >-->
+<!--          <mat-autocomplete #auto="matAutocomplete">-->
+<!--            <ng-container *ngIf="!isLoading">-->
+<!--              <mat-option (click) = "openDetails(data.media_type,data.id); updateContinueWatch(data, data.poster_path)"*ngFor="let data of fetchedData" [value]="data.title">-->
+<!--                <span style="color:white" > <img src={{data.backdrop_path}} style="max-width:75px"> &nbsp;{{ data.title }}</span>-->
+<!--                <br>-->
+<!--              </mat-option>-->
+<!--            </ng-container>-->
+<!--          </mat-autocomplete>-->
+<!--      </div>-->
+<!--    </form>-->
+    <ng-template #rt let-r="result" let-t="term" class = "typeahead-res">
+      <div class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <a class="nav-link typeahead-link" data-toggle="collapse" data-target=".navbar-collapse.show" (click) = "openDetails(r.media_type,r.id); updateContinueWatch(r, r.poster_path)"  style="width: 100%;"  >
+          <!-- <div class=""> -->
+          <img [src]="r.backdrop_path" class="mr-1" style="width: 3rem">
+          <ngb-highlight [result]="r.title" [term]="t"></ngb-highlight>
+          <!-- </div> -->
+        </a>
+      </div>
+    </ng-template>
+
+    <fieldset class="form-inline ml-auto">
+      <input style="width: 13em;" id="typeahead-http" type="text" class="form-control mx-sm-3 navbar-search" [class.is-invalid]="searchFailed" ngModel [ngbTypeahead]="search" placeholder="Search" [resultTemplate]="rt" [inputFormatter]="formatter"/>
+    </fieldset>
+  </div>
+</nav>

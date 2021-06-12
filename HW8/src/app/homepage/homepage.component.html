@@ -1,0 +1,282 @@
+
+<div *ngIf = "!mobile" class="col-lg-12 col-sm-12"style="padding-left: 8%;padding-right: 10%; margin-top: 50px; height: 500px">
+  <ngb-carousel class="current-movies" #carousel [interval]="5000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+    <ng-template ngbSlide *ngFor="let img of images; index as i">
+      <div class="img-hover-zoom" (click)="openDetails('movie',img.id); updateContinueWatch(img)">
+        <div class="carousel-caption">
+          <p style="color:white; font-size: 20px;">{{img.title}}</p>
+        </div>
+        <img src={{img.backdrop_path}}>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<div *ngIf = "mobile" class=" col-lg-12 col-sm-12"style="padding-left: 8%;padding-right: 10%; margin-top: 50px; height: 200px">
+  <ngb-carousel class="current-movies mobile" #carousel [interval]="5000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+    <ng-template ngbSlide *ngFor="let img of images; index as i">
+      <div class="img-hover-zoom" (click)="openDetails('movie',img.id); updateContinueWatch(img)">
+        <div class="carousel-caption">
+          <p style="color:white; font-size: 20px;">{{img.title}}</p>
+        </div>
+        <img src={{img.backdrop_path}}>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<br>
+
+<div *ngIf="!isEmpty">
+  <h1 style="color:white; padding-left: 8%"> Continue Watching</h1>
+  <div *ngIf = "!mobile" class="col-lg-12">
+    <ngb-carousel class="continue-watch" style="width: 100%;">
+      <ng-template ngbSlide *ngFor="let d of actualData">
+        <div class="row">
+          <div class="col-lg-2 col-sm-12" *ngFor="let idx of d" >
+            <div class="img-hover-zoom" (click)="openDetails(idx.media_type ,idx.id); updateContinueWatch(idx)">
+              <div class="carousel-caption">
+                <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+              </div>
+              <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+  <div *ngIf = "mobile" class="col-lg-12">
+    <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+      <ng-template ngbSlide *ngFor="let d of data">
+        <div class="col-lg-2 col-sm-12">
+          <div class="img-hover-zoom" (click)="openDetails(d.media_type,d.id); updateContinueWatch(d)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{d.title}}</p>
+            </div>
+            <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
+
+<br>
+
+<h1 style="color:white; padding-left: 8%"> Popular Movies</h1>
+<div *ngIf="!mobile" class="col-lg-12 col-sm-12">
+  <ngb-carousel class="continue-watch" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of popmovData">
+      <div class="row">
+        <div class="col-lg-2" *ngFor="let idx of d" >
+          <div class="img-hover-zoom" (click)="openDetails('movie',idx.id); updateContinueWatch(idx)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+            </div>
+            <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<div *ngIf = "mobile" class="col-lg-12">
+  <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of popmovdata">
+      <div class="col-lg-2 col-sm-12">
+        <div class="img-hover-zoom" (click)="openDetails('movie',d.id); updateContinueWatch(d)">
+          <div class="carousel-caption">
+            <p style="color:white; font-size: 15px;">{{d.title}}</p>
+          </div>
+          <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<br>
+
+<h1 style="color:white; padding-left: 8%">Top Rated Movies</h1>
+<div *ngIf = "!mobile" class="col-lg-12 col-sm-12">
+  <ngb-carousel class="continue-watch" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of topmovData">
+      <div class="row">
+        <div class="col-lg-2" *ngFor="let idx of d" >
+          <div class="img-hover-zoom" (click)="openDetails('movie',idx.id); updateContinueWatch(idx)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+            </div>
+            <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<div *ngIf = "mobile" class="col-lg-12">
+  <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of topmovdata">
+      <div class="col-lg-2 col-sm-12">
+        <div class="img-hover-zoom" (click)="openDetails('movie',d.id); updateContinueWatch(d)">
+          <div class="carousel-caption">
+            <p style="color:white; font-size: 15px;">{{d.title}}</p>
+          </div>
+          <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<br>
+
+<h1  style="color:white; padding-left: 8%">Trending Movies</h1>
+<div *ngIf="!mobile" class="col-lg-12 col-sm-12">
+  <ngb-carousel class="continue-watch" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of trendmovData">
+      <div class="row">
+        <div class="col-lg-2" *ngFor="let idx of d" >
+          <div class="img-hover-zoom" (click)="openDetails('movie',idx.id); updateContinueWatch(idx)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+            </div>
+            <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<div *ngIf = "mobile" class="col-lg-12">
+  <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of trendmovdata">
+      <div class="col-lg-2 col-sm-12">
+        <div class="img-hover-zoom" (click)="openDetails('movie',d.id); updateContinueWatch(d)">
+          <div class="carousel-caption">
+            <p style="color:white; font-size: 15px;">{{d.title}}</p>
+          </div>
+          <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<br>
+
+<h1 style="color:white; padding-left: 8%"> Popular TV</h1>
+<div *ngIf="!mobile" class="col-lg-12 col-sm-12">
+  <ngb-carousel class="continue-watch" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of poptvData">
+      <div class="row">
+        <div class="col-lg-2" *ngFor="let idx of d" >
+          <div class="img-hover-zoom" (click)="openDetails('tv',idx.id); updateContinueWatch(idx)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+            </div>
+            <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<div *ngIf = "mobile" class="col-lg-12">
+  <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of poptvdata">
+      <div class="col-lg-2 col-sm-12">
+        <div class="img-hover-zoom" (click)="openDetails('tv',d.id); updateContinueWatch(d)">
+          <div class="carousel-caption">
+            <p style="color:white; font-size: 15px;">{{d.title}}</p>
+          </div>
+          <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<br>
+
+<h1 style="color:white; padding-left: 8%"> Top Rated TV</h1>
+<div *ngIf="!mobile" class="col-lg-12 col-sm-12">
+  <ngb-carousel class="continue-watch" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of toptvData">
+      <div class="row">
+        <div class="col-lg-2" *ngFor="let idx of d" >
+          <div class="img-hover-zoom" (click)="openDetails('tv',idx.id); updateContinueWatch(idx)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+            </div>
+            <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<div *ngIf = "mobile" class="col-lg-12">
+  <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of toptvdata">
+      <div class="col-lg-2 col-sm-12">
+        <div class="img-hover-zoom" (click)="openDetails('tv',d.id); updateContinueWatch(d)">
+          <div class="carousel-caption">
+            <p style="color:white; font-size: 15px;">{{d.title}}</p>
+          </div>
+          <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<br>
+
+<h1 style="color:white; padding-left: 8%"> Trending TV</h1>
+<div *ngIf="!mobile" class="col-lg-12 col-sm-12">
+  <ngb-carousel class="continue-watch" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of trendtvData">
+      <div class="row">
+        <div class="col-lg-2" *ngFor="let idx of d" >
+          <div class="img-hover-zoom" (click)="openDetails('tv',idx.id); updateContinueWatch(idx)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+            </div>
+            <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<div *ngIf = "mobile" class="col-lg-12">
+  <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+    <ng-template ngbSlide *ngFor="let d of trendtvdata">
+      <div class="col-lg-2 col-sm-12">
+        <div class="img-hover-zoom" (click)="openDetails('tv',d.id); updateContinueWatch(d)" >
+          <div class="carousel-caption">
+            <p style="color:white; font-size: 15px;">{{d.title}}</p>
+          </div>
+          <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+
+
+
+
+
+
+
+

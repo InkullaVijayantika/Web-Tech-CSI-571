@@ -1,0 +1,151 @@
+.current-movies /deep/ .carousel-control-prev{
+  padding-right: 5%;
+}
+
+
+.current-movies /deep/ .carousel-control-next{
+  padding-left: 5%;
+}
+
+
+.current-movies{
+  outline: none;
+}
+
+
+.current-movies /deep/ .carousel-item img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.current-movies /deep/.carousel-item{
+  height: 100%;
+}
+
+
+.current-movies /deep/ .carousel-caption{
+  opacity: 0;
+}
+
+
+.current-movies{
+  height: 100%;
+}
+
+
+.current-movies /deep/ .carousel-inner{
+  height: 100%;
+}
+
+
+.current-movies .img-hover-zoom:hover /deep/ .carousel-caption{
+  opacity: 1;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), black);
+  right: 0;
+  left: 0;
+  bottom: 0%;
+  text-align: left;
+  padding: 2%;
+  /*width: 100%;*/
+
+}
+
+
+.continue-watch /deep/ .carousel-caption{
+  opacity: 0;
+}
+
+
+.continue-watch .img-hover-zoom:hover /deep/ .carousel-caption{
+  opacity: 1;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), black);
+  left: 7%;
+  right:7%;
+  bottom:0%;
+  text-align: left;
+  padding-left: 2%;
+  height: 25%;
+}
+
+@media only screen and (max-width: 900px) {
+  .continue-watch .img-hover-zoom:hover /deep/ .carousel-caption{
+    opacity: 1;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05), black);
+    left: 3%;
+    right:3%;
+    bottom:0%;
+    text-align: left;
+    padding-left: 2%;
+    height: 10%;
+  }
+}
+
+
+.continue-watch /deep/ .carousel-control-prev{
+  padding-right: 5%;
+
+}
+
+
+.continue-watch /deep/ .carousel-control-next{
+  padding-left: 5%;
+
+}
+
+
+.continue-watch{
+  outline: none;
+}
+
+
+.mobile /deep/ .carousel-indicators{
+  visibility: hidden;
+}
+
+
+.mobile /deep/ .carousel-item img:hover {
+  transform: scale(1.05);
+}
+
+
+.mobile /deep/ .carousel-control-prev-icon{
+  visibility: visible;
+  /*color: azure;*/
+}
+
+
+.mobile /deep/ .carousel-control-next-icon{
+  visibility: visible;
+  /*color: azure;*/
+}
+
+
+/deep/ .carousel-item img:hover {
+  transform: scale(1.05);
+}
+
+
+.img-hover-zoom {
+  /*height: 300px; !* [1.1] Set it as per your need *!*/
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+
+}
+
+
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+
+.row{
+  height: 100%;
+  padding-bottom: 3%;
+  padding-left: 7%;
+  padding-right: 7%;
+}

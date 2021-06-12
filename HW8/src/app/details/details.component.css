@@ -1,0 +1,149 @@
+.cast{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+
+.cast ::-webkit-scrollbar {
+  visibility: visible;
+  display: inline-block;
+   width: 2em;
+}
+
+
+.cast ::-webkit-scrollbar-track {
+  visibility: visible;
+   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+ }
+
+
+.cast::-webkit-scrollbar-thumb {
+  visibility: visible;
+   background-color: grey;
+   outline: 1px solid slategrey;
+ }
+
+
+/deep/ .modal-dialog{
+  /*margin-left: 15%;*/
+  /*margin-right: 15%;*/
+  max-width: 70%;
+  /*align-content: center;*/
+  left:10%;
+  /*right: 1%;*/
+  margin: 0px;
+}
+
+
+.review-text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+
+.continue-watch /deep/ .carousel-caption{
+  opacity: 0;
+}
+
+
+.continue-watch .img-hover-zoom:hover /deep/ .carousel-caption{
+  opacity: 1;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), black);
+  left: 7%;
+  right:7%;
+  bottom:0%;
+  text-align: left;
+  padding-left: 2%;
+  height: 25%;
+}
+
+@media only screen and (max-width: 900px) {
+  .continue-watch .img-hover-zoom:hover /deep/ .carousel-caption{
+    opacity: 1;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05), black);
+    left: 3%;
+    right:3%;
+    bottom:0%;
+    text-align: left;
+    padding-left: 2%;
+    height: 10%;
+  }
+}
+
+
+.continue-watch /deep/ .carousel-control-prev{
+  padding-right: 5%;
+  /*left: 0%;*/
+}
+
+
+.continue-watch /deep/ .carousel-control-next{
+  padding-left: 5%;
+  /*right: 0%;*/
+}
+
+
+.continue-watch{
+  outline: none;
+}
+
+
+.mobile /deep/ .carousel-indicators{
+  visibility: hidden;
+}
+
+
+.mobile /deep/ .carousel-item img:hover {
+  transform: scale(1.05);
+}
+
+
+.mobile /deep/ .carousel-control-prev-icon{
+  visibility: visible;
+  /*color: azure;*/
+}
+
+
+.mobile /deep/ .carousel-control-next-icon{
+  visibility: visible;
+  /*color: azure;*/
+}
+
+
+/deep/ .carousel-item img:hover {
+  transform: scale(1.05);
+}
+
+
+.img-hover-zoom {
+  /*height: 300px; !* [1.1] Set it as per your need *!*/
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+
+}
+
+
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+
+.continue-watch .row{
+  height: 100%;
+  padding-bottom: 3%;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+
+
+
+

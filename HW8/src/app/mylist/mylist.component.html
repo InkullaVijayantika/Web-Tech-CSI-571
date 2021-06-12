@@ -1,0 +1,25 @@
+<div>
+  <div *ngIf = "!isEmpty">
+    <h1 style="color:white; padding-left: 8%; margin-top: 20px;">My watchlist</h1>
+    <br>
+    <div class="continue-watch">
+      <div class = "row">
+        <div class = "col-lg-2" *ngFor = "let d of data">
+          <div class="img-hover-zoom" (click)="openDetails(d.media_type,d.id)">
+            <img src={{d.poster_path}} style=" width: 100%;">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{d.title}}</p>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isEmpty">
+    <h1 style="color:white; text-align: center">No items on watchlist</h1>
+  </div>
+</div>
+
+

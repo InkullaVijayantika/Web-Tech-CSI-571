@@ -1,0 +1,58 @@
+.navbar-nav .nav-link {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+
+.navbar-brand{
+  padding-right: 10px;
+  padding-left: 30px;
+}
+
+
+.input-group{
+  padding-right: 30px;
+}
+
+
+/*.form-control {*/
+/*  width: 300px;*/
+/*  background-color:black;*/
+/*  border:none;*/
+/*  border-bottom:solid 1px white;*/
+/*}*/
+
+
+/*.form-control:focus{*/
+/*  color:white;*/
+/*}*/
+
+
+/*/deep/ .mat-autocomplete-panel{*/
+/*  background-color: #0a043c;*/
+/*  border: 1px solid white;*/
+/*}*/
+
+
+/*/deep/ .mat-option.mat-focus-indicator:hover{*/
+/*  background-color: blue;*/
+/*}*/
+
+/deep/ ngb-typeahead-window.dropdown-menu {
+  background-color: #060a3a;
+  z-index: 200000;
+  color:white;
+}
+
+ngb-highlight {
+  color:white
+}
+
+.navbar-search {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  outline:none;
+  box-shadow:none;
+  color:#ffffff;
+}

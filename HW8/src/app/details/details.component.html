@@ -1,0 +1,269 @@
+
+<div class="top-section row" *ngIf = "details" style="padding-left: 8%;padding-top: 50px; padding-right: 10%;">
+  <div class="col-lg-8">
+    <youtube-player *ngIf="!mobile"
+                    videoId={{details.key}}
+                    suggestedQuality="highres"
+                    height="400"
+                    width="790"
+                    style="float: left; ">
+    </youtube-player>
+    <youtube-player *ngIf="mobile"
+                    videoId={{details.key}}
+                    suggestedQuality="highres"
+                    height="200"
+                    width="340"
+                    style="float: left;">
+    </youtube-player>
+  </div>
+  <div class="col-lg-3" style="margin-left: 2%">
+    <h1 style="color:white; "> {{details.title}}</h1>
+    <p style = "color: white; font-style: italic; font-weight: 300"> {{details.tagline}} </p>
+    <br>
+    <p style = "color: white; font-weight: 300;"> {{details.release_date.split('-')[0]}} | &#9733; {{details.vote}} | {{floor( details.runtime/60)}}hrs {{details.runtime%60}}min</p>
+    <p style ="color:white; font-weight: 200;" *ngIf = "details.genres"> Genres : <span style ="color: #bbbbbb; font-weight: 200;">{{genres(details.genres)}}</span>
+      <br> Spoken Languages : <span style ="color: #bbbbbb; font-weight: 200;">{{languages(details.languages)}}</span>
+    </p>
+    <button type="button" class="btn btn-primary" (click) = "updateWatchlist()" > {{buttext}}  </button>
+    <br>
+    <div *ngIf="message" class="row" style="padding-top: 5%;">
+      <div class="alert alert-success alert-dismissible fade show" *ngIf="fav" role="alert">
+        {{message}}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="!fav" role="alert">
+        {{message}}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="desc row" *ngIf = "details" style="padding-left: 8%; padding-top:2%; padding-right: 10%;">
+  <div class="col-lg">
+    <h5 style = "color:white">Description </h5>
+    <p style = "color:#bbbbbb; font-weight: 400">{{details.overview}}</p>
+    <br>
+    <h5 style="color: white">Share</h5>
+    <label ngbButtonLabel style="font-size: 30px; float: left; padding: 0px; padding-right: 5px;" >
+      <a target="_blank" href="https://twitter.com/intent/tweet?text=Watch {{details.title}} https://www.youtube.com/watch?v={{details.key}} %20%20%23USC%20%23CSCI571%20%23FightOn" class="fab fa-twitter"  ></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </label>
+    <label ngbButtonLabel style="font-size: 30px; float: left;padding: 0px;">
+      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{{details.key}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fab fa-facebook-square"></i></a>
+    </label>
+  </div>
+
+</div>
+
+<div  *ngIf = "castData.length" style="padding-left: 8%; padding-top:2%; padding-right: 10%;">
+  <h2 style="color: white; font-weight: bold">Full Cast and Crew</h2>
+  <div class=" cast row" style="height: 450px">
+        <div style="padding: 0px; padding-right: 7%"class="col-lg-2 col-sm-6"*ngFor="let d of castData">
+            <ng-template #content let-modal>
+              <div *ngIf="!mobile">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">{{d.name}}</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body d-flex flex-column">
+                  <div>
+                    <img src="{{d.profile_path}}" style = "float: left;  width: 20%; margin-right: 10px">
+                    <p> Birth: {{fullCast.dob}} <br> Birth place: {{fullCast.place}} <br> Gender: {{fullCast.gender}} <br>
+                      Known for: {{fullCast.talent}} <br> Known as: {{knownas(fullCast.knownas)}} </p>
+                    <div>
+                      <label *ngIf = "fullCast.imdb" ngbButtonLabel style="padding: 0px; padding-right: 3px;font-size: 30px; float: left;">
+                        <a target="_blank"  href = "https://www.imdb.com/name/{{fullCast.imdb}}">
+                          <span style="color: #fed049"><i class="fab fa-imdb"></i></span>
+                        </a>
+                      </label>
+                      <label *ngIf = "fullCast.insta" ngbButtonLabel style="padding: 0px; padding-right: 3px; font-size: 30px; float: left;">
+                        <a target="_blank" href = "https://www.instagram.com/{{fullCast.insta}}">
+                          <span style="color:darkmagenta"><i class="fab fa-instagram"></i></span>
+                        </a>
+                      </label>
+                      <label *ngIf = "fullCast.fb" ngbButtonLabel style="padding: 0px; padding-right: 3px; font-size: 30px; float: left;">
+                        <a target="_blank" href = "https://www.facebook.com/{{fullCast.fb}}">
+                          <i class="fab fa-facebook-square"></i></a>
+                      </label>
+                      <label *ngIf = "fullCast.twitter" ngbButtonLabel style="padding: 0px; padding-right: 3px; font-size: 30px; float: left">
+                        <a target="_blank" href = "https://www.twitter.com/{{fullCast.twitter}}"><i class="fab fa-twitter"></i></a>
+                      </label>
+                    </div>
+                  </div>
+                  <br>
+                  <div *ngIf = "fullCast.bio">
+                    <h3> Biography </h3>
+                    <p> {{fullCast.bio}}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-mobile"*ngIf="mobile">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">{{d.name}}</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body d-flex flex-column">
+                  <div>
+                    <img src="{{d.profile_path}}" style = "float: left;  width: 100%; margin-right: 10px">
+                    <p> Birth: {{fullCast.dob}} <br> Birth place: {{fullCast.place}} <br> Gender: {{fullCast.gender}} <br>
+                      Known for: {{fullCast.talent}} <br> Known as: {{knownas(fullCast.knownas)}} </p>
+                    <div>
+                      <label *ngIf = "fullCast.imdb" ngbButtonLabel style="padding: 0px; padding-right: 3px;font-size: 30px; float: left;">
+                        <a target="_blank"  href = "https://www.imdb.com/name/{{fullCast.imdb}}">
+                          <span style="color: #fed049"><i class="fab fa-imdb"></i></span>
+                        </a>
+                      </label>
+                      <label *ngIf = "fullCast.insta" ngbButtonLabel style="padding: 0px; padding-right: 3px; font-size: 30px; float: left;">
+                        <a target="_blank" href = "https://www.instagram.com/{{fullCast.insta}}">
+                          <span style="color:darkmagenta"><i class="fab fa-instagram"></i></span>
+                        </a>
+                      </label>
+                      <label *ngIf = "fullCast.fb" ngbButtonLabel style="padding: 0px; padding-right: 3px; font-size: 30px; float: left;">
+                        <a target="_blank" href = "https://www.facebook.com/{{fullCast.fb}}">
+                          <i class="fab fa-facebook-square"></i></a>
+                      </label>
+                      <label *ngIf = "fullCast.twitter" ngbButtonLabel style="padding: 0px; padding-right: 3px; font-size: 30px; float: left">
+                        <a target="_blank" href = "https://www.twitter.com/{{fullCast.twitter}}"><i class="fab fa-twitter"></i></a>
+                      </label>
+                    </div>
+                  </div>
+                  <br>
+                  <div *ngIf = "fullCast.bio">
+                    <h3> Biography </h3>
+                    <p> {{fullCast.bio}}</p>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          <div class="card" style="border: none; border-radius: 1rem; width: 185px;" (click) = "open(content, d.id)"  >
+            <img class="card-img-top" style="border-top-left-radius: 1rem; border-top-right-radius: 1rem" src="{{d.profile_path}}" alt="Card image cap">
+            <div class="card-body" style="text-align: center">
+              <h5 class="card-title">{{d.name}}<br> AS </h5>
+              <p class="card-text">{{d.character}}</p>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+<br>
+
+<div *ngIf="reviewsData.length" style="padding-left: 8%; padding-top:2%; padding-right: 10%;">
+  <h1 style="color:white"> Reviews <span style="color:grey">{{reviewsData.length}}</span></h1>
+    <div *ngFor = "let d of reviewsData">
+      <div *ngIf="!mobile">
+        <div class="card" style="margin:15px; min-height: 100px; ">
+          <div class="card-body" style="height: 100%">
+            <img *ngIf="d.profile_path" class="card-img" src="{{d.profile_path}}" style="float: left; height: 10%; width: 10%; margin-right: 20px;">
+            <img *ngIf="!d.profile_path" class="card-img" src="../../assets/images/ReviewsPlaceholderImage.jpeg" style="float: left; height: 10%; width: 10%; margin-right: 20px;">
+            <p style="font-size: 20px; font-weight: 600"> A review created by {{d.author}}  &nbsp;
+              <span *ngIf="d.rating" style="font-size: 15px; padding: 5px; background-color: black; color: white; border-radius: 15px">  &nbsp;&#9733;  {{d.rating}}&nbsp;</span>
+            </p>
+            <p style="color: grey"> Written by {{d.author}} on {{d.created.split("T")[0]}} </p>
+            <p class = "review-text"> {{d.content}}</p>
+            <p style="margin-left: 125px"><a style="text-decoration: underline"target="_blank" href="https://themoviedb.org/review/{{d.id}}">Read the rest</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="mobile">
+        <div class="card" style="margin:15px; min-height: 100px; ">
+          <div class="card-body" style="height: 100%">
+            <div class="col" style="float: left;">
+              <img *ngIf="d.profile_path" class="card-img" src="{{d.profile_path}}" style="float: left; height: 10%; width: 10%; margin-right: 20px;">
+              <img *ngIf="!d.profile_path" class="card-img" src="../../assets/images/ReviewsPlaceholderImage.jpeg" style="float: left; height: 10%; width: 10%; margin-right: 20px;">
+            </div>
+            <p style="font-size: 20px; font-weight: 600"> A review created by {{d.author}}  &nbsp;
+              <span *ngIf="d.rating" style="font-size: 15px; padding: 5px; background-color: black; color: white; border-radius: 15px">  &nbsp;&#9733;  {{d.rating}}&nbsp;</span>
+            </p>
+            <p style="color: grey"> Written by {{d.author}} on {{d.created.split("T")[0]}} </p>
+            <p class = "review-text"> {{d.content}}</p>
+            <p><a style="text-decoration: underline"target="_blank" href="https://themoviedb.org/review/{{d.id}}">Read the rest</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+<div *ngIf="recom.length">
+  <h1 style="color:white; padding-left: 8%"> Recommended </h1>
+  <div *ngIf = "!mobile" class="col-lg-12">
+    <ngb-carousel class="continue-watch" style="width: 100%;">
+      <ng-template ngbSlide *ngFor="let d of actualRecom">
+        <div class="row">
+          <div class="col-lg-2 col-sm-12" *ngFor="let idx of d" >
+            <div class="img-hover-zoom" (click)="openDetails(idx.id);  updateContinueWatch(idx)">
+              <div class="carousel-caption">
+                <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+              </div>
+              <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+  <div *ngIf = "mobile" class="col-lg-12">
+    <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+      <ng-template ngbSlide *ngFor="let d of recom">
+        <div class="col-lg-2 col-sm-12">
+          <div class="img-hover-zoom" (click)="openDetails(d.id);  updateContinueWatch(d)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{d.title}}</p>
+            </div>
+            <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
+
+<div *ngIf="similar.length">
+  <h1 style="color:white; padding-left: 8%"> Similar </h1>
+  <div *ngIf = "!mobile" class="col-lg-12">
+    <ngb-carousel class="continue-watch" style="width: 100%;">
+      <ng-template ngbSlide *ngFor="let d of actualSim">
+        <div class="row">
+          <div class="col-lg-2 col-sm-12" *ngFor="let idx of d" >
+            <div class="img-hover-zoom" (click)="openDetails(idx.id);  updateContinueWatch(idx)">
+              <div class="carousel-caption">
+                <p style="color:white; font-size: 15px;">{{idx.title}}</p>
+              </div>
+              <img src="{{idx.poster_path}}" style="height: 85%; width: 100%;">
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+  <div *ngIf = "mobile" class="col-lg-12">
+    <ngb-carousel class="continue-watch mobile" style="width: 100%;">
+      <ng-template ngbSlide *ngFor="let d of similar">
+        <div class="col-lg-2 col-sm-12">
+          <div class="img-hover-zoom" (click)="openDetails(d.id);  updateContinueWatch(d)">
+            <div class="carousel-caption">
+              <p style="color:white; font-size: 15px;">{{d.title}}</p>
+            </div>
+            <img src="{{d.poster_path}}" style="height: 85%; width: 100%;">
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
+
+
+
+
+
